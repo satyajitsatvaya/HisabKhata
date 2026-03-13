@@ -80,12 +80,6 @@ const Login = () => {
                     </button>
                 </form>
 
-                <p className="text-center mt-6 text-slate-400">
-                    Don't have an account?{' '}
-                    <Link to="/register" className="text-emerald-400 hover:text-emerald-300 font-medium">
-                        Create one
-                    </Link>
-                </p>
             </div>
         </div>
     );
