@@ -17,7 +17,7 @@ const Login = () => {
         setLoading(true);
         const success = await login(email, password);
         if (success) {
-            navigate('/');
+            navigate('/app');
         } else {
             setError('Invalid credentials');
         }

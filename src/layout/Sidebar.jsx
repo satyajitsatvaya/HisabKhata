@@ -7,10 +7,10 @@ const Sidebar = ({ darkMode, toggleTheme }) => {
     const { logout } = useAuth();
 
     const links = [
-        { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-        { to: '/expenses', label: 'Expenses', icon: Receipt },
-        { to: '/budgets', label: 'Budgets', icon: PiggyBank },
-        { to: '/analytics', label: 'Analytics', icon: PieChart },
+        { to: '/app', label: 'Dashboard', icon: LayoutDashboard },
+        { to: '/app/expenses', label: 'Expenses', icon: Receipt },
+        { to: '/app/budgets', label: 'Budgets', icon: PiggyBank },
+        { to: '/app/analytics', label: 'Analytics', icon: PieChart },
     ];
 
     return (
@@ -31,7 +31,8 @@ const Sidebar = ({ darkMode, toggleTheme }) => {
             <nav className="flex-1 px-4 space-y-2">
                 {links.map((link) => {
                     const Icon = link.icon;
-                    const isActive = location.pathname === link.to;
+                    const isActive = location.pathname === link.to || 
+                        (link.to === '/app' && location.pathname === '/app');
                     return (
                         <Link
                             key={link.to}
