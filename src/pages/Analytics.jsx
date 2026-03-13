@@ -283,31 +283,31 @@ const Analytics = () => {
                                 if (splitData.length === 0) return <EmptyState message="No spending data" />;
 
                                 return (
-                                    <div className="h-64">
-                                        <ResponsiveContainer width="100%" height="100%">
-                                            <PieChart>
-                                                <Pie
-                                                    data={splitData}
-                                                    cx="50%"
-                                                    cy="50%"
-                                                    innerRadius={60}
-                                                    outerRadius={100}
-                                                    paddingAngle={5}
-                                                    dataKey="value"
-                                                >
-                                                    {splitData.map((entry, index) => (
-                                                        <Cell key={`cell-${index}`} fill={entry.color} strokeWidth={0} />
-                                                    ))}
-                                                </Pie>
-                                                <Tooltip content={<CustomTooltip formatter={(val) => `₹${val.toLocaleString()}`} />} />
-                                                <Legend verticalAlign="bottom" iconType="circle" />
-                                            </PieChart>
-                                        </ResponsiveContainer>
-                                        <div className="mt-4 text-center text-sm text-slate-600">
-                                            <p>
-                                                <strong>{((weekendSum / (weekendSum + weekdaySum || 1)) * 100).toFixed(0)}%</strong> of spending happens on weekends.
-                                            </p>
+                                    <div>
+                                        <div className="h-64">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <PieChart>
+                                                    <Pie
+                                                        data={splitData}
+                                                        cx="50%"
+                                                        cy="50%"
+                                                        innerRadius={60}
+                                                        outerRadius={100}
+                                                        paddingAngle={5}
+                                                        dataKey="value"
+                                                    >
+                                                        {splitData.map((entry, index) => (
+                                                            <Cell key={`cell-${index}`} fill={entry.color} strokeWidth={0} />
+                                                        ))}
+                                                    </Pie>
+                                                    <Tooltip content={<CustomTooltip formatter={(val) => `₹${val.toLocaleString()}`} />} />
+                                                    <Legend verticalAlign="bottom" iconType="circle" />
+                                                </PieChart>
+                                            </ResponsiveContainer>
                                         </div>
+                                        <p className="mt-3 text-center text-sm text-slate-500">
+                                            <strong className="text-slate-700">{((weekendSum / (weekendSum + weekdaySum || 1)) * 100).toFixed(0)}%</strong> of spending happens on weekends.
+                                        </p>
                                     </div>
                                 );
                             })()
