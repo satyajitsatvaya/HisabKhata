@@ -11,7 +11,7 @@ const Budgets = () => {
     const [selectedBudget, setSelectedBudget] = useState(null);
 
     // Form State
-    const [category, setCategory] = useState('Food');
+    const [category, setCategory] = useState('Overall');
     const [amount, setAmount] = useState('');
     const [saving, setSaving] = useState(false);
 
@@ -49,7 +49,7 @@ const Budgets = () => {
         setSaving(true);
         try {
             await createOrUpdateBudget({
-                category,
+                category: category === 'Overall' ? null : category,
                 amount: parseFloat(amount),
                 year,
                 month
@@ -70,7 +70,7 @@ const Budgets = () => {
             setAmount(budget.budgetAmount);
             setSelectedBudget(budget);
         } else {
-            setCategory('Food');
+            setCategory('Overall');
             setAmount('');
             setSelectedBudget(null);
         }
@@ -169,8 +169,8 @@ const Budgets = () => {
                                     onChange={(e) => setCategory(e.target.value)}
                                     disabled={!!selectedBudget} // Disable changing category when editing
                                 >
-                                    {['Food', 'Transport', 'Entertainment', 'Housing', 'Utilities', 'Health', 'Other'].map(cat => (
-                                        <option key={cat} value={cat}>{cat}</option>
+                                    {['Overall', 'Food', 'Transport', 'Entertainment', 'Housing', 'Utilities', 'Health', 'Other'].map(cat => (
+                                        <option key={cat} value={cat}>{cat === 'Overall' ? '🌐 Overall (All Categories)' : cat}</option>
                                     ))}
                                 </select>
                             </div>
